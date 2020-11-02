@@ -1,9 +1,9 @@
 Package: rankR
 Version: 0.5-1
 Date: 2015-01-01
-Title: My First Collection of Functions
-Authors@R: c(person("Joe", "Developer", role = c("aut", "cre"),
-                     email = "Joe.Developer@some.domain.net"),
+Title: RCV Tabulation Functions
+Authors@R: c(person("Jesse Clark", "Developer", role = c("aut", "cre"),
+                     email = "jtclark#mit.edu"),
               person("Pat", "Developer", role = "aut"),
               person("A.", "User", role = "ctb",
                      email = "A.User@whereever.net"))
