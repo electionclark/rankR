@@ -3,7 +3,7 @@ Type: Package
 Title: Tabulating ranked-choice voting data in instant-runoff systems using Maine Rules
 Version: 0.1.0
 Author: Jesse Clark
-Maintainer: Jesse T. Clark (jtclark@mit.edu
+Maintainer: Jesse T. Clark (jtclark@mit.edu)
 Description: Tabulates ranked-choice ballot images that have been transcribed to CSVs
 License: MIT License
 Encoding: UTF-8
