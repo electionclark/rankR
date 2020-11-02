@@ -1,9 +1,5 @@
 ### rank functions
 
-maine<- readRDS("maine_rcv.rData")
-
-
-
 
 tabulatR<- function(data, firstrank, finalrank, totalranks){
   data_facsim<- data ### make facsimile of maine
@@ -49,6 +45,4 @@ tabulatR<- function(data, firstrank, finalrank, totalranks){
   }
 }
 
-
-tabulatR(data = maine, totalranks = 3, firstrank = 4, finalrank = 6)
 
