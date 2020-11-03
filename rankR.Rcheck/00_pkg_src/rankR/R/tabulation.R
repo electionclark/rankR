@@ -1,27 +1,5 @@
 ### rank functions
 
-
-#' BISG with ZIP codes
-#'
-#' This function takes ranked-choice ballot images and tabulates winners and othermetrics
-#' data, as acquired from Social Explorer.
-#'
-#' @param data The data frame for the rcv ballots.
-#' @param firstrank The number of the column where the first ranked candidate for each voter is found
-#' @param finalrank the number of the column where the last ranked candidate for each voter is found
-#' @param totalranks The number of candidates on the ballot.
-#' @param surname_field The column name for the surname that the wru package will use to merge on the surname probabilities. Note that they
-#' must all be uppercase, and if not already, the column will be renamed to surname
-#' @return A list of objects, including the tabulations.
-#' }
-#'
-#' @export
-#' @examples
-#' maine_data<- tabulatR(data = maine, firstrank = 3, finalrank = 5, totalranks = 3)
-#' approved<- approval(maine)
-#'
-
-
 tabulatR<- function(data, firstrank, finalrank, totalranks){
   data_facsim<- data ### make facsimile of data
 
