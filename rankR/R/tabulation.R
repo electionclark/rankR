@@ -1,7 +1,4 @@
-### rank functions
-
-
-#' BISG with ZIP codes
+#' ranked-chioce voting tabulation
 #'
 #' This function takes ranked-choice ballot images and tabulates winners and othermetrics
 #' data, as acquired from Social Explorer.
