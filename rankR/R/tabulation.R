@@ -1,8 +1,7 @@
 ### rank functions
 
-
 tabulatR<- function(data, firstrank, finalrank, totalranks){
-  data_facsim<- data ### make facsimile of maine
+  data_facsim<- data ### make facsimile of data
 
   #### initial tabulation
   data_facsim[,firstrank]<-ifelse(data_facsim[,firstrank] == "undervote",  data_facsim[,(firstrank+1)], data_facsim[,firstrank])
@@ -12,6 +11,8 @@ tabulatR<- function(data, firstrank, finalrank, totalranks){
   data_facsim$initialvote<-data_facsim[,firstrank]
 
   counts<- list()
+  initialcount<- NULL
+  winner<- NULL
 
   for(i in 1:(totalranks-1)){
 
@@ -19,7 +20,7 @@ tabulatR<- function(data, firstrank, finalrank, totalranks){
     count$Var1<- as.character(count$Var1)
     colnames(count)[1]<- "Candidate"
     colnames(count)[2]<- "votes"
-    counts[[i]]<- count
+    initialcount<- count
 
     cands<- unique(count$Candidate)
     cands<- cands[!cands %in% c("undervote", "overvote")]
@@ -40,9 +41,23 @@ tabulatR<- function(data, firstrank, finalrank, totalranks){
     total_roundi<- sum(count$votes[count$Candidate %in% cands])
     counts[[i]]<- count
 
-    ifelse(length(count$Candidate[(count$votes/ total_roundi) > .5]) > 0, return(counts), print("Next round!"))
+    winner<<-(count$Candidate[(count$votes/ total_roundi) > .5])
+    winner<- (count$Candidate[(count$votes/ total_roundi) > .5])
+    tabulationround<- i
+    output<- list(initialcount, counts, winner, tabulationround)
+    finalcount<<- counts
+
+    ifelse(length(count$Candidate[(count$votes/ total_roundi) > .5]) > 0, return(output), print("Next round!"))
 
   }
+}
+
+
+
+rcv_approval<- function(data){
+  approval<- as.numeric(apply(maine, 1, function(r) any(r %in% c(winner))))
+  approval<<-as.numeric(apply(maine, 1, function(r) any(r %in% c(winner))))
+  return(approval)
 }
 
 
