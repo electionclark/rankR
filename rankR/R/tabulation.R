@@ -71,8 +71,6 @@ tabulatR<- function(data, firstrank, finalrank, totalranks){
   }
 }
 
-
-
 rcv_approval<- function(data){
   approval<- as.numeric(apply(data, 1, function(r) any(r %in% c(winner))))
   approval<<-as.numeric(apply(data, 1, function(r) any(r %in% c(winner))))
