@@ -1,1 +1,4 @@
-hello                   Hello, World!
+rcv_approval            Calculates approval for a the winning
+                        candidate.
+tabulatR                tabulates RCV data to find the winner based off
+                        of Maine rules

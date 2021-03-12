@@ -24,18 +24,37 @@ nameEx("hello")
 flush(stderr()); flush(stdout())
 
 base::assign(".ptime", proc.time(), pos = "CheckExEnv")
-### Name: hello
-### Title: Hello, World!
-### Aliases: hello
+### Name: tabulatR
+### Title: tabulates RCV data to find the winner based off of Maine rules
+### Aliases: tabulatR
 
 ### ** Examples
 
-hello()
+tabulatR(data, firstrank, finalrank, totalranks)
 
 
 
 base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
 base::cat("hello", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+cleanEx()
+nameEx("rcv_approval")
+### * rcv_approval
+
+flush(stderr()); flush(stdout())
+
+base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+### Name: rcv_approval
+### Title: Calculates approval for a the winning candidate.
+### Aliases: rcv_approval
+
+### ** Examples
+
+rcv_approval(data)
+
+
+
+base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+base::cat("rcv_approval", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 ### * <FOOTER>
 ###
 cleanEx()

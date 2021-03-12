@@ -32,32 +32,46 @@ Non-standard file/directory found at top level:
 * checking whether the package can be unloaded cleanly ... OK
 * checking whether the namespace can be loaded with stated dependencies ... OK
 * checking whether the namespace can be unloaded cleanly ... OK
-* checking dependencies in R code ... NOTE
-Package in Depends field not imported from: ‘nlme’
-  These packages need to be imported from (in the NAMESPACE file)
-  for when this namespace is loaded but not attached.
+* checking dependencies in R code ... WARNING
+'::' or ':::' import not declared from: ‘readr’
 * checking S3 generic/method consistency ... OK
 * checking replacement functions ... OK
 * checking foreign function calls ... OK
 * checking R code for possible problems ... NOTE
+pca_scalr: no visible global function definition for ‘permutations’
+pca_scalr: no visible global function definition for ‘prcomp’
 rcv_approval : <anonymous>: no visible binding for global variable
   ‘winner’
 tabulatR: no visible binding for '<<-' assignment to ‘finalcount’
 Undefined global functions or variables:
-  winner
+  permutations prcomp winner
+Consider adding
+  importFrom("stats", "prcomp")
+to your NAMESPACE file.
 * checking Rd files ... OK
 * checking Rd metadata ... OK
 * checking Rd line widths ... OK
 * checking Rd cross-references ... OK
 * checking for missing documentation entries ... WARNING
 Undocumented code objects:
-  ‘rcv_approval’ ‘tabulatR’
+  ‘pca_scalr’
 All user-level objects in a package should have documentation entries.
 See chapter ‘Writing R documentation files’ in the ‘Writing R
 Extensions’ manual.
 * checking for code/documentation mismatches ... WARNING
-Functions or methods with usage in documentation object 'hello' but not in code:
-  ‘hello’
+Codoc mismatches from documentation object 'tabulatR':
+tabulatR
+  Code: function(data, firstrank, finalrank, totalranks)
+  Docs: function()
+  Argument names in code not in docs:
+    data firstrank finalrank totalranks
+
+Codoc mismatches from documentation object 'rcv_approval':
+rcv_approval
+  Code: function(data)
+  Docs: function()
+  Argument names in code not in docs:
+    data
 
 * checking Rd \usage sections ... OK
 * checking Rd contents ... OK
@@ -67,16 +81,18 @@ Running examples in ‘rankR-Ex.R’ failed
 The error most likely occurred in:
 
 > base::assign(".ptime", proc.time(), pos = "CheckExEnv")
-> ### Name: hello
-> ### Title: Hello, World!
-> ### Aliases: hello
+> ### Name: tabulatR
+> ### Title: tabulates RCV data to find the winner based off of Maine rules
+> ### Aliases: tabulatR
 > 
 > ### ** Examples
 > 
-> hello()
-Error in hello() : could not find function "hello"
+> tabulatR(data, firstrank, finalrank, totalranks)
+Error in ifelse(data_facsim[, firstrank] == "undervote", data_facsim[,  : 
+  object 'firstrank' not found
+Calls: tabulatR -> ifelse
 Execution halted
 * checking for non-standard things in the check directory ... OK
 * checking for detritus in the temp directory ... OK
 * DONE
-Status: 1 ERROR, 2 WARNINGs, 3 NOTEs
+Status: 1 ERROR, 3 WARNINGs, 2 NOTEs

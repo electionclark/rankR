@@ -33,7 +33,6 @@ Type 'q()' to quit R.
 > 
 > ### * </HEADER>
 > library('rankR')
-Loading required package: nlme
 > 
 > base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
 > base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
@@ -44,12 +43,14 @@ Loading required package: nlme
 > flush(stderr()); flush(stdout())
 > 
 > base::assign(".ptime", proc.time(), pos = "CheckExEnv")
-> ### Name: hello
-> ### Title: Hello, World!
-> ### Aliases: hello
+> ### Name: tabulatR
+> ### Title: tabulates RCV data to find the winner based off of Maine rules
+> ### Aliases: tabulatR
 > 
 > ### ** Examples
 > 
-> hello()
-Error in hello() : could not find function "hello"
+> tabulatR(data, firstrank, finalrank, totalranks)
+Error in ifelse(data_facsim[, firstrank] == "undervote", data_facsim[,  : 
+  object 'firstrank' not found
+Calls: tabulatR -> ifelse
 Execution halted

@@ -1,4 +1,23 @@
-### rank functions
+#' ranked-chioce voting tabulation
+#'
+#' This function takes ranked-choice ballot images and tabulates winners and othermetrics
+#' data, as acquired from Social Explorer.
+#'
+#' @param data The data frame for the rcv ballots.
+#' @param firstrank The number of the column where the first ranked candidate for each voter is found
+#' @param finalrank the number of the column where the last ranked candidate for each voter is found
+#' @param totalranks The number of candidates on the ballot.
+#' @param surname_field The column name for the surname that the wru package will use to merge on the surname probabilities. Note that they
+#' must all be uppercase, and if not already, the column will be renamed to surname
+#' @return A list of objects, including the tabulations.
+#' }
+#'
+#' @export
+#' @examples
+#' maine_data<- tabulatR(data = maine, firstrank = 3, finalrank = 5, totalranks = 3)
+#' approved<- approval(maine)
+#'
+
 
 tabulatR<- function(data, firstrank, finalrank, totalranks){
   data_facsim<- data ### make facsimile of data
@@ -60,4 +79,38 @@ rcv_approval<- function(data){
   return(approval)
 }
 
+pca_scalr <- function (voter_idealpoint, candidates ){
+  print("Making the binary choice dataset. This may take several minutes.")
+  unique_vec<- c(letters[1:candidates])
+  col_namen<- c()
+  for(i in 1:length(unique_vec)){
+    df <- as.data.frame(permutations(n=length(unique_vec), r=2, v=unique_vec))
+    col_namen<- c(col_namen, (paste0(df$V1, df$V2, i)))
+  }
+
+
+  binary_mat<- data.frame(matrix(0, nrow = nrow(voter_idealpoint), ncol = length(col_namen)))
+  colnames(binary_mat)<- col_namen
+
+
+
+  for(i in 1:nrow(voter_idealpoint)){
+    for(j in 1:ncol(voter_idealpoint)){
+      for(m in 1:ncol(binary_mat)){
+        binary_mat[i,m]<- ifelse(voter_idealpoint[i, j] == substr(colnames(binary_mat)[m], 1, 1) & j == readr::parse_number(colnames(binary_mat)[m]), 1, binary_mat[i,m] )
+      }
+    }
+  }
+
+
+  #### run PCA
+  #### add candidates, run pca again. See if paramteres recovered
+
+  a1<- prcomp(binary_mat)
+  voter_idealpoint_pca<- voter_idealpoint
+  voter_idealpoint_pca$pr_1<- a1$x[,1]
+  a1<<- a1
+  voter_idealpoint_pca<<- voter_idealpoint_pca
+  return(print("PCA Scaling Complete"))
+}
 

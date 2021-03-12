@@ -1,12 +1,14 @@
-\name{hello}
-\alias{hello}
-\title{Hello, World!}
+\name{tabulatR}
+\alias{tabulatR}
+\title{tabulates RCV data to find the winner based off of Maine rules}
 \usage{
-hello()
+tabulatR()
 }
 \description{
-Prints 'Hello, world!'.
+Outputs the winner and how many allocation rounds it took to find a winner.
 }
 \examples{
-hello()
+tabulatR(data, firstrank, finalrank, totalranks)
 }
+
+

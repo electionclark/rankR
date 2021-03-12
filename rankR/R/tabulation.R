@@ -79,4 +79,38 @@ rcv_approval<- function(data){
   return(approval)
 }
 
+pca_scalr <- function (voter_idealpoint, candidates ){
+  print("Making the binary choice dataset. This may take several minutes.")
+  unique_vec<- c(letters[1:candidates])
+  col_namen<- c()
+  for(i in 1:length(unique_vec)){
+    df <- as.data.frame(permutations(n=length(unique_vec), r=2, v=unique_vec))
+    col_namen<- c(col_namen, (paste0(df$V1, df$V2, i)))
+  }
+
+
+  binary_mat<- data.frame(matrix(0, nrow = nrow(voter_idealpoint), ncol = length(col_namen)))
+  colnames(binary_mat)<- col_namen
+
+
+
+  for(i in 1:nrow(voter_idealpoint)){
+    for(j in 1:ncol(voter_idealpoint)){
+      for(m in 1:ncol(binary_mat)){
+        binary_mat[i,m]<- ifelse(voter_idealpoint[i, j] == substr(colnames(binary_mat)[m], 1, 1) & j == readr::parse_number(colnames(binary_mat)[m]), 1, binary_mat[i,m] )
+      }
+    }
+  }
+
+
+  #### run PCA
+  #### add candidates, run pca again. See if paramteres recovered
+
+  a1<- prcomp(binary_mat)
+  voter_idealpoint_pca<- voter_idealpoint
+  voter_idealpoint_pca$pr_1<- a1$x[,1]
+  a1<<- a1
+  voter_idealpoint_pca<<- voter_idealpoint_pca
+  return(print("PCA Scaling Complete"))
+}
 
