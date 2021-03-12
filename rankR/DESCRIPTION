@@ -7,7 +7,7 @@ Authors@R: c(person("Jesse Clark", "Developer", role = c("aut", "cre"),
 Author: Jesse Clark [aut, cre],
 Maintainer: Jesse Clark <jtclark@mit.edu>
 Depends: R (>= 3.1.0),
-Suggests:  tidyverse
+Suggests:  tidyverse, gtools
 Description: Tabulates ranked-choice voting data using Maine IRV rules quickly and efficiently, and tabulates other metrics for support and approval of voters. 
 License: GPL (>= 2)
 URL: https://www.r-project.org, http://www.another.url
